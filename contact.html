@@ -11,8 +11,9 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
         header { background-color: rgba(17, 24, 39, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(55, 65, 81, 0.5); }
-        .form-input { width: 100%; padding: 0.75rem; border-radius: 0.5rem; background-color: #374151; border: 1px solid #4B5563; color: #E5E7EB; transition: border-color 0.2s, box-shadow 0.2s; }
-        .form-input:focus { outline: none; border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); }
+        .form-input, .form-select, .form-textarea { width: 100%; padding: 0.75rem; border-radius: 0.5rem; background-color: #374151; border: 1px solid #4B5563; color: #E5E7EB; transition: border-color 0.2s, box-shadow 0.2s; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); }
+        .form-checkbox { accent-color: #EF4444; }
         .animated-hero-bg { position: relative; background: #111827; overflow: hidden; }
         .animated-hero-bg::before {
             content: '';
@@ -26,6 +27,7 @@
             animation: rotate-glow 20s linear infinite;
         }
         @keyframes rotate-glow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        .form-section-divider { border-top: 1px solid #374151; }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
@@ -70,33 +72,90 @@
                 <div class="mx-auto max-w-2xl lg:text-center">
                     <h2 class="text-base font-semibold leading-7 text-red-400">Contact Us</h2>
                     <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Let's Build Your Future, Together.</p>
-                    <p class="mt-6 text-lg leading-8 text-gray-300">Ready to elevate your IT? Contact us today for a free, no-obligation consultation. We're here to help.</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">Ready to elevate your IT? Tell us about your business, and we'll be in touch to schedule a free, no-obligation consultation.</p>
                 </div>
             </div>
         </section>
 
         <section class="bg-gray-900 py-16 sm:py-24">
-            <div class="max-w-xl mx-auto bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
-                <form id="contact-form" class="space-y-6">
+            <div class="max-w-2xl mx-auto bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
+                <form id="contact-form" class="space-y-8">
+                    <!-- Form sections remain the same -->
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                        <input type="text" id="name" name="name" class="form-input" required>
+                        <h3 class="text-xl font-semibold text-white mb-6">About You</h3>
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Work Email</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                             <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                            </div>
+                             <div>
+                                <label for="role" class="block text-sm font-medium text-gray-300 mb-2">Your Role</label>
+                                <input type="text" id="role" name="role" class="form-input" placeholder="e.g., CEO, IT Manager">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section-divider"></div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-6">About Your Company</h3>
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label for="company-name" class="block text-sm font-medium text-gray-300 mb-2">Company Name</label>
+                                <input type="text" id="company-name" name="companyName" class="form-input" required>
+                            </div>
+                            <div>
+                                <label for="company-size" class="block text-sm font-medium text-gray-300 mb-2">Number of Employees</label>
+                                <select id="company-size" name="companySize" class="form-select">
+                                    <option>1-10</option>
+                                    <option>11-50</option>
+                                    <option>51-100</option>
+                                    <option>101-250</option>
+                                    <option>250+</option>
+                                </select>
+                            </div>
+                             <div class="sm:col-span-2">
+                                <label for="industry" class="block text-sm font-medium text-gray-300 mb-2">Industry</label>
+                                <input type="text" id="industry" name="industry" class="form-input" placeholder="e.g., Healthcare, Manufacturing, Legal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section-divider"></div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-4">What can we help you with?</h3>
+                        <p class="text-sm text-gray-400 mb-6">Select all that apply.</p>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <label class="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-700/50 cursor-pointer"><input type="checkbox" name="interest" value="Managed IT" class="form-checkbox h-5 w-5 rounded"><span>Managed IT Services</span></label>
+                            <label class="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-700/50 cursor-pointer"><input type="checkbox" name="interest" value="Cybersecurity" class="form-checkbox h-5 w-5 rounded"><span>Cybersecurity & Compliance</span></label>
+                            <label class="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-700/50 cursor-pointer"><input type="checkbox" name="interest" value="Cloud Solutions" class="form-checkbox h-5 w-5 rounded"><span>Cloud Solutions (Microsoft 365, Azure)</span></label>
+                            <label class="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-700/50 cursor-pointer"><input type="checkbox" name="interest" value="Backup & Recovery" class="form-checkbox h-5 w-5 rounded"><span>Data Backup & Disaster Recovery</span></label>
+                            <label class="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-700/50 cursor-pointer"><input type="checkbox" name="interest" value="VOIP" class="form-checkbox h-5 w-5 rounded"><span>VOIP Phone Systems</span></label>
+                            <label class="flex items-center space-x-3 p-3 rounded-md hover:bg-gray-700/50 cursor-pointer"><input type="checkbox" name="interest" value="IT Consulting" class="form-checkbox h-5 w-5 rounded"><span>IT Consulting & Projects</span></label>
+                        </div>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
+                         <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Is there anything else we should know?</label>
+                         <textarea id="message" name="message" rows="4" class="form-textarea"></textarea>
                     </div>
                      <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" class="form-input">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" class="form-input" required></textarea>
+                        <label for="referral" class="block text-sm font-medium text-gray-300 mb-2">How did you hear about us?</label>
+                        <select id="referral" name="referral" class="form-select">
+                            <option>Google / Search Engine</option>
+                            <option>Referral</option>
+                            <option>Social Media</option>
+                            <option>Advertisement</option>
+                            <option>Other</option>
+                        </select>
                     </div>
                     <div id="contact-response" class="text-center h-5 transition-opacity duration-300"></div>
-                    <div>
-                        <button type="submit" class="w-full bg-red-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Send Message</button>
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-red-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Request My Free Consultation</button>
                     </div>
                 </form>
             </div>
@@ -114,28 +173,59 @@
         });
 
         const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
+        const backendUrl = 'https://lns-api-proxy.onrender.com'; // Your backend URL
+
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const responseDiv = document.getElementById('contact-response');
             const submitButton = contactForm.querySelector('button[type="submit"]');
 
-            responseDiv.textContent = '';
             submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
+            submitButton.textContent = 'Submitting...';
+            responseDiv.textContent = '';
+            responseDiv.style.color = '';
 
-            setTimeout(() => {
-                responseDiv.textContent = 'Thank you! Your message has been sent.';
-                responseDiv.style.color = '#34D399'; // Tailwind's green-400
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                role: formData.get('role'),
+                companyName: formData.get('companyName'),
+                companySize: formData.get('companySize'),
+                industry: formData.get('industry'),
+                interests: formData.getAll('interest'),
+                message: formData.get('message'),
+                referral: formData.get('referral'),
+            };
+
+            try {
+                const response = await fetch(`${backendUrl}/api/create-lead`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+                if (!response.ok) {
+                    const errorResult = await response.json();
+                    throw new Error(errorResult.message || 'An unknown error occurred.');
+                }
+
+                responseDiv.textContent = 'Thank you! We will be in touch shortly.';
+                responseDiv.style.color = '#34D399'; // Green
                 contactForm.reset();
-                
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Message';
 
+            } catch (error) {
+                console.error('Submission Error:', error);
+                responseDiv.textContent = `Error: ${error.message}`;
+                responseDiv.style.color = '#F87171'; // Red
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Request My Free Consultation';
                 setTimeout(() => {
                     responseDiv.textContent = '';
-                }, 5000);
-
-            }, 1500);
+                }, 6000);
+            }
         });
     </script>
 </body>
