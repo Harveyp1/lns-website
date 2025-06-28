@@ -151,8 +151,6 @@
     </footer>
     
     <script>
-    // This script is identical to the previous client-portal.html script.
-    // It handles the mobile menu, login, session management, and API calls.
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -207,8 +205,8 @@
                 });
                 
                 if (!response.ok) {
-                     const errorData = await response.json().catch(() => ({message: 'Authentication failed. Please check your credentials.'}));
-                     throw new Error(errorData.message);
+                     const errorResult = await response.json().catch(() => ({message: 'Authentication failed.'}));
+                     throw new Error(errorResult.message);
                 }
                 const data = await response.json();
 
@@ -221,7 +219,7 @@
                 }
             } catch (err) {
                 console.error('Login error:', err);
-                errorDiv.textContent = err.message || 'Could not connect to the portal. Please try again later.';
+                errorDiv.textContent = err.message || 'Could not connect. Please try again later.';
                 errorDiv.classList.remove('hidden');
             } finally {
                 submitButton.disabled = false;
@@ -235,13 +233,8 @@
             const tabsContainer = document.getElementById('dashboard-tabs');
             if(!tabsContainer) return;
             
-            const allTabs = [
-                { id: 'tickets', label: 'My Tickets' },
-                { id: 'assets', label: 'Assets' },
-            ];
-            const visibleTabs = userRole === 'admin' ? allTabs : allTabs.filter(tab => ['tickets', 'assets'].includes(tab.id));
-            
-            tabsContainer.innerHTML = visibleTabs.map(tab => 
+            const allTabs = [ { id: 'tickets', label: 'My Tickets' }, { id: 'assets', label: 'Assets' } ];
+            tabsContainer.innerHTML = allTabs.map(tab => 
                 `<button data-tab="${tab.id}" class="portal-tab whitespace-nowrap py-4 px-1 font-medium text-sm">${tab.label}</button>`
             ).join('');
 
@@ -249,9 +242,7 @@
                 tab.addEventListener('click', () => showTab(tab.dataset.tab, userRole));
             });
             
-            if (visibleTabs.length > 0) {
-                 showTab(visibleTabs[0].id, userRole);
-            }
+            showTab('tickets', userRole);
         }
         
         function showTab(tabId, userRole) {
@@ -277,7 +268,7 @@
                 const data = await response.json();
                 renderTickets(data.tickets);
             } catch (error) {
-                console.error("Failed to load live tickets:", error);
+                console.error("Failed to load tickets:", error);
                 document.getElementById('ticket-list').innerHTML = `<p class="text-red-400">Error loading tickets. Please try again later.</p>`;
             }
         }
@@ -289,7 +280,7 @@
                  ticketList.innerHTML = tickets.map(ticket => `
                     <div class="bg-gray-800 p-4 rounded-lg flex justify-between items-center">
                         <div><p class="font-semibold text-white">#${ticket.number} - ${ticket.subject}</p><p class="text-sm text-gray-400">Created: ${new Date(ticket.created_at).toLocaleDateString()}</p></div>
-                        <span class="px-3 py-1 text-xs font-medium rounded-full bg-gray-500/20 text-gray-300">${ticket.status}</span>
+                        <span class="px-3 py-1 text-xs font-medium rounded-full bg-gray-700 text-gray-300">${ticket.status}</span>
                     </div>`).join('');
             } else {
                 ticketList.innerHTML = `<p class="text-gray-400">No support tickets found.</p>`;
@@ -300,7 +291,7 @@
             const portalContent = document.getElementById('portal-content');
             portalContent.innerHTML = `<div class="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
                 <div class="flex justify-between items-center mb-6"><h3 class="text-2xl font-bold text-white">My Managed Assets</h3></div>
-                <div id="asset-list" class="space-y-4"><p class="text-gray-400">Loading assets...</p></div>
+                <div id="asset-list" class="overflow-x-auto"><p class="text-gray-400">Loading assets...</p></div>
             </div>`;
 
             try {
@@ -309,34 +300,79 @@
                 const data = await response.json();
                 renderAssets(data.assets);
             } catch (error) {
-                console.error("Failed to load live assets:", error);
+                console.error("Failed to load assets:", error);
                 document.getElementById('asset-list').innerHTML = `<p class="text-red-400">Error loading assets. Please try again later.</p>`;
             }
         }
         
+        // --- NEW ASSET HELPER FUNCTIONS ---
+        function getAssetStatus(asset) {
+            if (!asset.last_seen_at) return { text: 'Unknown', color: 'bg-yellow-500' };
+            const lastSeen = new Date(asset.last_seen_at).getTime();
+            const now = new Date().getTime();
+            const minutesAgo = (now - lastSeen) / 1000 / 60;
+
+            if (minutesAgo <= 30) return { text: 'Online', color: 'bg-green-500' };
+            return { text: 'Offline', color: 'bg-gray-500' };
+        }
+
+        function timeAgo(dateString) {
+            if (!dateString) return 'Never';
+            const date = new Date(dateString);
+            const seconds = Math.floor((new Date() - date) / 1000);
+            let interval = seconds / 31536000;
+            if (interval > 1) return Math.floor(interval) + " years ago";
+            interval = seconds / 2592000;
+            if (interval > 1) return Math.floor(interval) + " months ago";
+            interval = seconds / 86400;
+            if (interval > 1) return Math.floor(interval) + " days ago";
+            interval = seconds / 3600;
+            if (interval > 1) return Math.floor(interval) + " hours ago";
+            interval = seconds / 60;
+            if (interval > 1) return Math.floor(interval) + " minutes ago";
+            return "Just now";
+        }
+        
+        // --- UPDATED RENDER ASSETS FUNCTION ---
         function renderAssets(assets) {
-            const assetList = document.getElementById('asset-list');
-            if(!assetList) return;
+            const assetListContainer = document.getElementById('asset-list');
+            if(!assetListContainer) return;
+            
             if(assets && assets.length > 0) {
-                 assetList.innerHTML = `<div class="overflow-x-auto relative rounded-lg"><table class="w-full text-sm text-left text-gray-400">
+                 assetListContainer.innerHTML = `<table class="w-full min-w-[640px] text-sm text-left text-gray-400">
                     <thead class="text-xs uppercase bg-gray-700 text-gray-400">
                         <tr>
+                            <th scope="col" class="py-3 px-6">Status</th>
                             <th scope="col" class="py-3 px-6">Asset Name</th>
-                            <th scope="col" class="py-3 px-6">Type</th>
-                            <th scope="col" class="py-3 px-6">Serial Number</th>
+                            <th scope="col" class="py-3 px-6">OS</th>
+                            <th scope="col" class="py-3 px-6">RAM</th>
+                            <th scope="col" class="py-3 px-6">Last Seen</th>
                         </tr>
                     </thead>
                     <tbody>
-                    ${assets.map(asset => `
-                    <tr class="border-b bg-gray-800 border-gray-700">
-                        <th scope="row" class="py-4 px-6 font-medium text-white whitespace-nowrap">${asset.name}</th>
-                        <td class="py-4 px-6">${asset.asset_type ? asset.asset_type.name : 'N/A'}</td>
-                        <td class="py-4 px-6">${asset.properties ? (asset.properties['Serial Number'] || 'N/A') : 'N/A'}</td>
-                    </tr>
-                    `).join('')}
-                    </tbody></table></div>`;
+                    ${assets.map(asset => {
+                        const status = getAssetStatus(asset);
+                        // Safely access nested properties using optional chaining (?.)
+                        const os = asset.properties?.['OS Version'] || asset.properties?.['OS'] || 'N/A';
+                        const ram = asset.properties?.['RAM'] || 'N/A';
+                        
+                        return `
+                        <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-700/50">
+                            <td class="py-4 px-6">
+                                <div class="flex items-center gap-2">
+                                    <span class="h-2.5 w-2.5 rounded-full ${status.color}"></span>
+                                    <span>${status.text}</span>
+                                </div>
+                            </td>
+                            <th scope="row" class="py-4 px-6 font-medium text-white whitespace-nowrap">${asset.name || 'Unnamed Asset'}</th>
+                            <td class="py-4 px-6">${os}</td>
+                            <td class="py-4 px-6">${ram}</td>
+                            <td class="py-4 px-6">${timeAgo(asset.last_seen_at)}</td>
+                        </tr>
+                        `}).join('')}
+                    </tbody></table>`;
             } else {
-                assetList.innerHTML = `<p class="text-gray-400">No assets found for this account.</p>`;
+                assetListContainer.innerHTML = `<p class="text-gray-400">No assets found for this account.</p>`;
             }
         }
         
