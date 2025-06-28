@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance - Live Networking Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
+        header { background-color: rgba(17, 24, 39, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(55, 65, 81, 0.5); }
+        .info-card { transition: transform 0.3s, box-shadow 0.3s ease; background-color: #1F2937; border: 1px solid #374151; }
+        .info-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.5); }
+        .animated-hero-bg { position: relative; background: #111827; overflow: hidden; }
+        .animated-hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0) 60%);
+            transform-origin: center;
+            animation: rotate-glow 20s linear infinite;
+        }
+        @keyframes rotate-glow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center p-0 border-none bg-transparent">
+                <img src="https://github.com/Harveyp1/lns-website/blob/main/LIve-Networking-Solutions-Light-1024x1024.png?raw=true" alt="live networking solutions logo" class="h-12 object-contain">
+            </a>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+            <div id="desktop-nav" class="hidden md:flex items-center space-x-4">
+                <ul class="flex items-center space-x-6">
+                    <li><a href="index.html" class="font-medium text-slate-300 hover:text-red-400 transition-colors">Home</a></li>
+                    <li><a href="services.html" class="font-medium text-slate-300 hover:text-red-400 transition-colors">Services</a></li>
+                    <li><a href="results.html" class="font-medium text-slate-300 hover:text-red-400 transition-colors">Results</a></li>
+                    <li><a href="compliance.html" class="font-medium text-red-400 transition-colors">Compliance</a></li>
+                    <li><a href="contact.html" class="font-medium text-slate-300 hover:text-red-400 transition-colors">Contact</a></li>
+                </ul>
+                <div class="flex items-center space-x-3 pl-4">
+                    <a href="client-portal.html" class="bg-red-500 text-white px-5 py-2 rounded-full font-semibold text-sm shadow-lg shadow-red-500/20 hover:bg-red-600 transition-colors transform hover:scale-105">Client Portal</a>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <ul class="px-6 pb-4 flex flex-col space-y-3">
+                <li><a href="index.html" class="block py-2 font-medium w-full text-left">Home</a></li>
+                <li><a href="services.html" class="block py-2 font-medium w-full text-left">Services</a></li>
+                <li><a href="results.html" class="block py-2 font-medium w-full text-left">Results</a></li>
+                <li><a href="compliance.html" class="block py-2 font-medium w-full text-left text-red-400">Compliance</a></li>
+                <li><a href="contact.html" class="block py-2 font-medium w-full text-left">Contact</a></li>
+                <li class="border-t border-gray-700 pt-4"><a href="client-portal.html" class="w-full block text-center bg-red-500 text-white px-5 py-2 rounded-full font-semibold shadow-lg">Client Portal</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="animated-hero-bg py-24 sm:py-32">
+            <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl lg:text-center">
+                    <h2 class="text-base font-semibold leading-7 text-red-400">Compliance & Trust</h2>
+                    <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Security by Design.</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">We ensure your IT infrastructure meets and exceeds industry standards for security and data privacy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gray-900 py-16 sm:py-24">
+            <div class="max-w-4xl mx-auto space-y-8 px-6">
+                <div class="info-card rounded-xl p-8 flex items-start space-x-6">
+                    <div class="flex-shrink-0 text-red-400 text-4xl mt-1">
+                        <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">HIPAA Compliance</h3>
+                        <p class="text-gray-400">For our healthcare clients, we implement robust security controls to protect patient health information (PHI) and ensure full compliance with the Health Insurance Portability and Accountability Act.</p>
+                    </div>
+                </div>
+                <div class="info-card rounded-xl p-8 flex items-start space-x-6">
+                    <div class="flex-shrink-0 text-red-400 text-4xl mt-1">
+                        <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">SOC 2 Type II</h3>
+                        <p class="text-gray-400">Our data centers and processes are SOC 2 Type II compliant, demonstrating our commitment to security, availability, processing integrity, confidentiality, and privacy.</p>
+                    </div>
+                </div>
+                 <div class="info-card rounded-xl p-8 flex items-start space-x-6">
+                    <div class="flex-shrink-0 text-red-400 text-4xl mt-1">
+                        <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">CMMC Readiness</h3>
+                        <p class="text-gray-400">We help government contractors navigate the complexities of the Cybersecurity Maturity Model Certification (CMMC), ensuring their systems are secure and ready for certification.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 py-8 mt-16 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2025 Live Networking Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
