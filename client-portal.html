@@ -305,7 +305,6 @@
             }
         }
         
-        // --- ASSET HELPER FUNCTIONS (Corrected) ---
         function getAssetStatus(asset) {
             const lastSeenDate = asset.online_at || asset.last_seen_at;
             if (!lastSeenDate) return { text: 'Unknown', color: 'bg-yellow-500' };
@@ -313,7 +312,7 @@
             const now = new Date().getTime();
             const minutesAgo = (now - lastSeen) / 1000 / 60;
 
-            if (minutesAgo <= 30) return { text: 'Online', color: 'bg-green-500' };
+            if (minutesAgo <= 60) return { text: 'Online', color: 'bg-green-500' }; // Increased to 60 minutes
             return { text: 'Offline', color: 'bg-gray-500' };
         }
 
@@ -334,7 +333,6 @@
             return "Just now";
         }
         
-        // --- FINAL RENDER ASSETS FUNCTION ---
         function renderAssets(assets) {
             const assetListContainer = document.getElementById('asset-list');
             if(!assetListContainer) return;
@@ -353,9 +351,10 @@
                     <tbody>
                     ${assets.map(asset => {
                         const status = getAssetStatus(asset);
-                        // The asset.properties object contains all the custom fields from Syncro.
-                        const os = asset.properties?.['OS'] || asset.properties?.['OS Version'] || 'N/A';
-                        const ram = asset.properties?.['RAM'] || 'N/A';
+                        // **THE FIX:** The asset data from the API nests the custom fields inside a 'properties' object.
+                        const props = asset.properties || {}; // Use an empty object if 'properties' doesn't exist to prevent errors.
+                        const os = props['OS'] || props['OS Version'] || 'N/A';
+                        const ram = props['RAM'] || 'N/A';
                         const lastSeenTime = asset.online_at || asset.last_seen_at;
                         
                         return `
@@ -381,7 +380,7 @@
         function showCreateTicketModal() {
             const modal = document.getElementById('create-ticket-modal');
             modal.classList.remove('hidden');
-            modal.classList.add('hidden');
+            modal.classList.add('flex');
             
             const closeModal = () => modal.classList.add('hidden');
             modal.querySelector('.modal-close').onclick = closeModal;
