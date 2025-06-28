@@ -305,9 +305,11 @@
             }
         }
         
+        // --- ASSET HELPER FUNCTIONS (Corrected) ---
         function getAssetStatus(asset) {
-            if (!asset.online_at) return { text: 'Unknown', color: 'bg-yellow-500' };
-            const lastSeen = new Date(asset.online_at).getTime();
+            const lastSeenDate = asset.online_at || asset.last_seen_at;
+            if (!lastSeenDate) return { text: 'Unknown', color: 'bg-yellow-500' };
+            const lastSeen = new Date(lastSeenDate).getTime();
             const now = new Date().getTime();
             const minutesAgo = (now - lastSeen) / 1000 / 60;
 
@@ -332,11 +334,8 @@
             return "Just now";
         }
         
-        // --- UPDATED RENDER ASSETS FUNCTION (with console.log) ---
+        // --- FINAL RENDER ASSETS FUNCTION ---
         function renderAssets(assets) {
-            // *** THIS IS THE DEBUGGING LINE ***
-            console.log("Raw Asset Data from API:", assets);
-
             const assetListContainer = document.getElementById('asset-list');
             if(!assetListContainer) return;
             
@@ -354,8 +353,10 @@
                     <tbody>
                     ${assets.map(asset => {
                         const status = getAssetStatus(asset);
-                        const os = asset.properties?.['OS Version'] || asset.properties?.['OS'] || 'N/A';
+                        // The asset.properties object contains all the custom fields from Syncro.
+                        const os = asset.properties?.['OS'] || asset.properties?.['OS Version'] || 'N/A';
                         const ram = asset.properties?.['RAM'] || 'N/A';
+                        const lastSeenTime = asset.online_at || asset.last_seen_at;
                         
                         return `
                         <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-700/50">
@@ -368,7 +369,7 @@
                             <th scope="row" class="py-4 px-6 font-medium text-white whitespace-nowrap">${asset.name || 'Unnamed Asset'}</th>
                             <td class="py-4 px-6">${os}</td>
                             <td class="py-4 px-6">${ram}</td>
-                            <td class="py-4 px-6">${timeAgo(asset.online_at)}</td>
+                            <td class="py-4 px-6">${timeAgo(lastSeenTime)}</td>
                         </tr>
                         `}).join('')}
                     </tbody></table>`;
@@ -380,7 +381,7 @@
         function showCreateTicketModal() {
             const modal = document.getElementById('create-ticket-modal');
             modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            modal.classList.add('hidden');
             
             const closeModal = () => modal.classList.add('hidden');
             modal.querySelector('.modal-close').onclick = closeModal;
