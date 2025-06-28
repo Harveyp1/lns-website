@@ -305,10 +305,9 @@
             }
         }
         
-        // --- NEW ASSET HELPER FUNCTIONS ---
         function getAssetStatus(asset) {
-            if (!asset.last_seen_at) return { text: 'Unknown', color: 'bg-yellow-500' };
-            const lastSeen = new Date(asset.last_seen_at).getTime();
+            if (!asset.online_at) return { text: 'Unknown', color: 'bg-yellow-500' };
+            const lastSeen = new Date(asset.online_at).getTime();
             const now = new Date().getTime();
             const minutesAgo = (now - lastSeen) / 1000 / 60;
 
@@ -333,8 +332,11 @@
             return "Just now";
         }
         
-        // --- UPDATED RENDER ASSETS FUNCTION ---
+        // --- UPDATED RENDER ASSETS FUNCTION (with console.log) ---
         function renderAssets(assets) {
+            // *** THIS IS THE DEBUGGING LINE ***
+            console.log("Raw Asset Data from API:", assets);
+
             const assetListContainer = document.getElementById('asset-list');
             if(!assetListContainer) return;
             
@@ -352,7 +354,6 @@
                     <tbody>
                     ${assets.map(asset => {
                         const status = getAssetStatus(asset);
-                        // Safely access nested properties using optional chaining (?.)
                         const os = asset.properties?.['OS Version'] || asset.properties?.['OS'] || 'N/A';
                         const ram = asset.properties?.['RAM'] || 'N/A';
                         
@@ -367,7 +368,7 @@
                             <th scope="row" class="py-4 px-6 font-medium text-white whitespace-nowrap">${asset.name || 'Unnamed Asset'}</th>
                             <td class="py-4 px-6">${os}</td>
                             <td class="py-4 px-6">${ram}</td>
-                            <td class="py-4 px-6">${timeAgo(asset.last_seen_at)}</td>
+                            <td class="py-4 px-6">${timeAgo(asset.online_at)}</td>
                         </tr>
                         `}).join('')}
                     </tbody></table>`;
