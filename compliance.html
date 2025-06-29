@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compliance - Live Networking Solutions</title>
+    <title>Compliance & Trust - Live Networking Solutions</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
         header { background-color: rgba(17, 24, 39, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(55, 65, 81, 0.5); }
-        .info-card { transition: transform 0.3s, box-shadow 0.3s ease; background-color: #1F2937; border: 1px solid #374151; }
-        .info-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.5); }
+        
         .animated-hero-bg { position: relative; background: #111827; overflow: hidden; }
         .animated-hero-bg::before {
             content: '';
@@ -26,6 +33,20 @@
             animation: rotate-glow 20s linear infinite;
         }
         @keyframes rotate-glow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        .compliance-nav-item {
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+            border-left: 4px solid transparent;
+        }
+        .compliance-nav-item.active {
+            background-color: #1F2937;
+            border-left-color: #EF4444;
+            color: white;
+        }
+        .compliance-nav-item:hover:not(.active) {
+            background-color: #374151;
+            border-left-color: #6B7280;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
@@ -69,39 +90,25 @@
             <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl lg:text-center">
                     <h2 class="text-base font-semibold leading-7 text-red-400">Compliance & Trust</h2>
-                    <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Security by Design.</p>
-                    <p class="mt-6 text-lg leading-8 text-gray-300">We ensure your IT infrastructure meets and exceeds industry standards for security and data privacy.</p>
+                    <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Security by Design, Compliance by Default.</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">We don't just fix problems—we build secure, compliant IT environments from the ground up to protect your business and your clients.</p>
                 </div>
             </div>
         </section>
 
-        <section class="bg-gray-900 py-16 sm:py-24">
-            <div class="max-w-4xl mx-auto space-y-8 px-6">
-                <div class="info-card rounded-xl p-8 flex items-start space-x-6">
-                    <div class="flex-shrink-0 text-red-400 text-4xl mt-1">
-                        <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
+        <section class="py-16 sm:py-24 bg-gray-900">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- Left Side Navigation -->
+                    <div class="md:col-span-1">
+                         <h3 class="text-lg font-semibold text-white mb-4 px-4">Compliance Frameworks</h3>
+                         <nav id="compliance-nav" class="flex flex-col space-y-1">
+                             <!-- Nav items will be injected by JS -->
+                         </nav>
                     </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-2">HIPAA Compliance</h3>
-                        <p class="text-gray-400">For our healthcare clients, we implement robust security controls to protect patient health information (PHI) and ensure full compliance with the Health Insurance Portability and Accountability Act.</p>
-                    </div>
-                </div>
-                <div class="info-card rounded-xl p-8 flex items-start space-x-6">
-                    <div class="flex-shrink-0 text-red-400 text-4xl mt-1">
-                        <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-2">SOC 2 Type II</h3>
-                        <p class="text-gray-400">Our data centers and processes are SOC 2 Type II compliant, demonstrating our commitment to security, availability, processing integrity, confidentiality, and privacy.</p>
-                    </div>
-                </div>
-                 <div class="info-card rounded-xl p-8 flex items-start space-x-6">
-                    <div class="flex-shrink-0 text-red-400 text-4xl mt-1">
-                        <svg class="h-10 w-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-2">CMMC Readiness</h3>
-                        <p class="text-gray-400">We help government contractors navigate the complexities of the Cybersecurity Maturity Model Certification (CMMC), ensuring their systems are secure and ready for certification.</p>
+                    <!-- Right Side Content -->
+                    <div id="compliance-content" class="md:col-span-3 bg-gray-800/50 rounded-lg p-8">
+                         <!-- Content will be injected by JS -->
                     </div>
                 </div>
             </div>
@@ -114,8 +121,200 @@
         </div>
     </footer>
     <script>
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            const navContainer = document.getElementById('compliance-nav');
+            const contentContainer = document.getElementById('compliance-content');
+            let currentChart = null;
+
+            const complianceData = {
+                hipaa: {
+                    title: 'HIPAA Compliance for Healthcare',
+                    description: "For our healthcare clients, protecting Patient Health Information (PHI) is paramount. We implement robust physical, technical, and administrative safeguards to ensure full compliance with the Health Insurance Portability and Accountability Act. Our services include risk assessments, access control management, data encryption, and secure backup strategies to keep your practice and patient data safe.",
+                    helpPoints: [
+                        'Security Risk Analysis (SRA)',
+                        'Encrypted Data & Communication',
+                        'Access Control & Monitoring',
+                        'Secure Backup & Disaster Recovery'
+                    ],
+                    renderChart: (canvasId) => {
+                        return new Chart(document.getElementById(canvasId), {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Administrative Safeguards', 'Physical Safeguards', 'Technical Safeguards'],
+                                datasets: [{ data: [35, 25, 40], backgroundColor: ['#EF4444', '#F87171', '#FCA5A5'] }]
+                            },
+                            options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: '#D1D5DB' } } } }
+                        });
+                    }
+                },
+                soc2: {
+                    title: 'SOC 2 Auditing & Readiness',
+                    description: "Demonstrate your commitment to security and build trust with your clients. We help prepare your organization for SOC 2 audits by assessing and implementing controls related to security, availability, processing integrity, confidentiality, and privacy. Our data centers and core processes are built on SOC 2 compliant principles.",
+                    helpPoints: [
+                        'Control Mapping & Gap Analysis',
+                        'Policy & Procedure Development',
+                        'Evidence Collection Automation',
+                        'Vendor Risk Management'
+                    ],
+                    renderChart: (canvasId) => {
+                         return new Chart(document.getElementById(canvasId), {
+                            type: 'radar',
+                            data: {
+                                labels: ['Security', 'Availability', 'Processing Integrity', 'Confidentiality', 'Privacy'],
+                                datasets: [{ label: 'Trust Services Criteria Focus', data: [9, 8, 7, 9, 8], backgroundColor: 'rgba(239, 68, 68, 0.2)', borderColor: '#EF4444', pointBackgroundColor: '#EF4444'}]
+                            },
+                            options: { scales: { r: { angleLines: { color: '#4B5563' }, grid: { color: '#4B5563' }, pointLabels: { color: '#D1D5DB' }, suggestedMin: 0, suggestedMax: 10 } }, responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#D1D5DB' } } } }
+                        });
+                    }
+                },
+                cmmc: {
+                    title: 'CMMC Readiness for Government Contractors',
+                    description: "The Cybersecurity Maturity Model Certification (CMMC) is essential for any business in the Defense Industrial Base (DIB). We help you navigate the complexities of CMMC requirements, from Level 1 to Level 3, implementing the necessary controls and documentation to ensure your systems are secure and prepared for certification audits.",
+                    helpPoints: [
+                        'Scoping of CUI Environments',
+                        'Implementation of NIST 800-171 Controls',
+                        'System Security Plan (SSP) Development',
+                        'Continuous Monitoring & Reporting'
+                    ],
+                    renderChart: (canvasId) => {
+                         return new Chart(document.getElementById(canvasId), {
+                            type: 'bar',
+                            data: {
+                                labels: ['Level 1: Foundational', 'Level 2: Advanced', 'Level 3: Expert'],
+                                datasets: [{ label: 'Number of Security Controls', data: [17, 110, 130], backgroundColor: ['#FCA5A5', '#F87171', '#EF4444'] }]
+                            },
+                            options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { ticks: { color: '#9CA3AF' } }, x: { ticks: { color: '#9CA3AF' } } } }
+                        });
+                    }
+                },
+                pci: {
+                    title: 'PCI DSS for Retail & E-commerce',
+                    description: "If your business accepts credit card payments, you must comply with the Payment Card Industry Data Security Standard (PCI DSS). We help secure your cardholder data environment (CDE) by implementing secure network configurations, vulnerability management programs, and strong access control measures to protect you and your customers.",
+                    helpPoints: [
+                        'Network Segmentation & Firewall Configuration',
+                        'Regular Vulnerability Scanning',
+                        'Secure Point-of-Sale (POS) Systems',
+                        'Data Encryption for Cardholder Info'
+                    ],
+                    renderChart: (canvasId) => {
+                         return new Chart(document.getElementById(canvasId), {
+                            type: 'polarArea',
+                            data: {
+                                labels: ['Build Secure Networks', 'Protect Cardholder Data', 'Vulnerability Management', 'Implement Access Control', 'Monitor Networks', 'Maintain InfoSec Policy'],
+                                datasets: [{ label: 'PCI DSS Core Requirement Groups', data: [2, 2, 2, 3, 2, 1], backgroundColor: ['#EF4444', '#F87171', '#FCA5A5', '#DC2626', '#B91C1C', '#991B1B'] }]
+                            },
+                            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#D1D5DB' } } }, scales: { r: { angleLines: { color: '#4B5563' }, grid: { color: '#4B5563' }, ticks: { display: false } } } }
+                        });
+                    }
+                },
+                ccpa: {
+                    title: 'CCPA/CPRA & US Data Privacy',
+                    description: "The California Consumer Privacy Act (CCPA) and its successor, the CPRA, have set the standard for consumer data privacy in the United States. We help businesses understand their obligations and implement the technical measures needed to respond to consumer requests and protect personal information, which is now a national issue as more states adopt similar laws.",
+                    helpPoints: [
+                        'Data Inventory & Mapping',
+                        '"Do Not Sell/Share" Process Support',
+                        'Consumer Rights Request Fulfillment',
+                        'Website Privacy Policy & Cookie Management'
+                    ],
+                     renderChart: (canvasId) => {
+                        return new Chart(document.getElementById(canvasId), {
+                            type: 'pie',
+                            data: {
+                                labels: ['Right to Know', 'Right to Delete', 'Right to Opt-Out', 'Right to Correct', 'Right to Limit Use'],
+                                datasets: [{ data: [1, 1, 1, 1, 1], backgroundColor: ['#EF4444', '#F87171', '#FCA5A5', '#DC2626', '#B91C1C'] }]
+                            },
+                            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#D1D5DB' } } } }
+                        });
+                    }
+                },
+                nist: {
+                    title: 'NIST Cybersecurity Framework',
+                    description: "The NIST Framework provides a voluntary but highly-respected set of standards and best practices for managing cybersecurity risk. We use the NIST framework as the foundation for our security services, helping you Identify, Protect, Detect, Respond, and Recover from cybersecurity threats in a structured and comprehensive manner.",
+                    helpPoints: [
+                        'Asset & Risk Identification',
+                        'Protective Technology Implementation',
+                        'Continuous Security Monitoring',
+                        'Incident Response Planning & Execution'
+                    ],
+                     renderChart: (canvasId) => {
+                        return new Chart(document.getElementById(canvasId), {
+                            type: 'radar',
+                            data: {
+                                labels: ['Identify', 'Protect', 'Detect', 'Respond', 'Recover'],
+                                datasets: [{ label: 'NIST Framework Functions', data: [8, 9, 7, 8, 7], backgroundColor: 'rgba(239, 68, 68, 0.2)', borderColor: '#EF4444', pointBackgroundColor: '#EF4444'}]
+                            },
+                            options: { scales: { r: { angleLines: { color: '#4B5563' }, grid: { color: '#4B5563' }, pointLabels: { color: '#D1D5DB' }, suggestedMin: 0, suggestedMax: 10 } }, responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                        });
+                    }
+                }
+            };
+            
+            function selectCompliance(key) {
+                // Set active state on nav item
+                document.querySelectorAll('.compliance-nav-item').forEach(item => {
+                    item.classList.toggle('active', item.dataset.key === key);
+                });
+
+                // Get data for selected compliance
+                const data = complianceData[key];
+                if (!data) return;
+
+                // Destroy previous chart if it exists
+                if (currentChart) {
+                    currentChart.destroy();
+                }
+
+                // Populate content area
+                contentContainer.innerHTML = `
+                    <div class="animate-fade-in">
+                        <h2 class="text-3xl font-bold text-white mb-4">${data.title}</h2>
+                        <p class="text-gray-400 mb-6">${data.description}</p>
+                        <h4 class="text-xl font-semibold text-white mb-4">How We Help:</h4>
+                        <ul class="space-y-3 mb-8">
+                            ${data.helpPoints.map(point => `
+                                <li class="flex items-start">
+                                    <svg class="h-6 w-6 flex-shrink-0 text-green-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span>${point}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <div class="relative h-80">
+                            <canvas id="complianceChart"></canvas>
+                        </div>
+                    </div>
+                `;
+                
+                // Render the new chart
+                // Add a small delay for the fade-in animation to start
+                setTimeout(() => {
+                    if(document.getElementById('complianceChart')) {
+                       currentChart = data.renderChart('complianceChart');
+                    }
+                }, 50);
+            }
+
+            // Populate nav and set up event listeners
+            Object.keys(complianceData).forEach(key => {
+                const button = document.createElement('button');
+                button.className = 'compliance-nav-item text-left font-medium text-gray-400 px-4 py-3 rounded-md';
+                button.textContent = complianceData[key].title;
+                button.dataset.key = key;
+                button.addEventListener('click', () => selectCompliance(key));
+                navContainer.appendChild(button);
+            });
+
+            // Select the first item by default
+            if (Object.keys(complianceData).length > 0) {
+                 selectCompliance('hipaa');
+            }
         });
     </script>
 </body>
