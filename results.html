@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results - Live Networking Solutions</title>
+    <title>Proven Results - Live Networking Solutions</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js for graphs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
         header { background-color: rgba(17, 24, 39, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(55, 65, 81, 0.5); }
-        .glow-card { transition: transform 0.3s, box-shadow 0.3s ease; background-color: #1F2937; border: 1px solid #374151; }
-        .glow-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(239, 68, 68, 0.15); }
-        .animated-hero-bg { position: relative; background: #111827; overflow: hidden; }
+        
+        .stat-card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.1);
+        }
+
+        .animated-hero-bg {
+            position: relative;
+            background: #111827;
+            overflow: hidden;
+        }
         .animated-hero-bg::before {
             content: '';
             position: absolute;
@@ -26,10 +46,26 @@
             transform-origin: center;
             animation: rotate-glow 20s linear infinite;
         }
-        @keyframes rotate-glow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes rotate-glow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Animation for sections fading in */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
+
+    <!-- HEADER -->
     <header class="sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center p-0 border-none bg-transparent">
@@ -66,74 +102,234 @@
     </header>
 
     <main>
+        <!-- Animated Hero Section -->
         <section class="animated-hero-bg py-24 sm:py-32">
             <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl lg:text-center">
                     <h2 class="text-base font-semibold leading-7 text-red-400">Proven Results</h2>
-                    <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Data-Driven Success.</p>
-                    <p class="mt-6 text-lg leading-8 text-gray-300">We deliver measurable improvements to our clients' efficiency, security, and bottom line.</p>
+                    <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Data-Driven Success Stories</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">We deliver measurable improvements to our clients' efficiency, security, and bottom line. The numbers speak for themselves.</p>
                 </div>
             </div>
         </section>
 
-        <section class="bg-gray-900 py-16 sm:py-24">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="glow-card rounded-xl p-8">
-                        <h3 class="text-2xl font-bold text-white mb-4">Client Success Story: Manufacturing Co.</h3>
-                        <p class="text-gray-400 mb-4">A mid-sized manufacturing company struggled with frequent downtime and cybersecurity threats. After partnering with us, they saw a 99.9% uptime and zero security breaches in the first year.</p>
-                        <ul class="space-y-3 text-gray-300">
-                            <li class="flex items-center"><svg class="h-6 w-6 flex-shrink-0 text-green-400 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>50% Reduction in IT Tickets</li>
-                            <li class="flex items-center"><svg class="h-6 w-6 flex-shrink-0 text-green-400 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>30% Decrease in Overall IT Spend</li>
-                            <li class="flex items-center"><svg class="h-6 w-6 flex-shrink-0 text-green-400 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Full HIPAA Compliance Achieved</li>
-                        </ul>
+        <!-- By the Numbers Section -->
+        <section class="py-16 sm:py-20 bg-gray-900">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-section">
+                     <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Performance by the Numbers</h2>
+                     <p class="mt-4 text-lg text-gray-400">Consistent excellence across all client environments.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="stat-card p-6 text-center rounded-lg fade-in-section">
+                        <p class="text-5xl font-extrabold text-red-400" id="stat-1">0</p>
+                        <p class="mt-2 text-lg font-medium text-white">Minutes Resolution Time</p>
+                        <p class="text-sm text-gray-400">(Average for P1/P2 Tickets)</p>
                     </div>
-                    <div class="glow-card rounded-xl p-8">
-                        <h3 class="text-2xl font-bold text-white mb-4 text-center">Average Client Improvements</h3>
-                        <canvas id="resultsChart"></canvas>
+                     <div class="stat-card p-6 text-center rounded-lg fade-in-section">
+                        <p class="text-5xl font-extrabold text-red-400" id="stat-2">0</p>
+                        <p class="mt-2 text-lg font-medium text-white">Client Satisfaction Score</p>
+                        <p class="text-sm text-gray-400">(Based on Post-Ticket Surveys)</p>
+                    </div>
+                     <div class="stat-card p-6 text-center rounded-lg fade-in-section">
+                        <p class="text-5xl font-extrabold text-red-400" id="stat-3">0</p>
+                        <p class="mt-2 text-lg font-medium text-white">System Uptime</p>
+                        <p class="text-sm text-gray-400">(Managed Infrastructure)</p>
+                    </div>
+                     <div class="stat-card p-6 text-center rounded-lg fade-in-section">
+                        <p class="text-5xl font-extrabold text-red-400" id="stat-4">0</p>
+                        <p class="mt-2 text-lg font-medium text-white">Threats Blocked Monthly</p>
+                        <p class="text-sm text-gray-400">(Average Per Client)</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Detailed Charts Section -->
+        <section class="py-16 sm:py-20 bg-[#111827]">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8 space-y-20">
+                <!-- Proactive Support Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center fade-in-section">
+                    <div>
+                        <h2 class="text-3xl font-bold tracking-tight text-white">The Shift to Proactive Support</h2>
+                        <p class="mt-4 text-lg text-gray-400">Our primary goal is to solve problems before they impact your team. Reactive, break-fix IT support is a relic of the past. We minimize disruptions and keep your employees productive through a constant cycle of monitoring, maintenance, and optimization.</p>
+                        <div class="mt-8 space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center"><svg class="w-5 h-5 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                                <div>
+                                    <h3 class="font-semibold text-white">24/7/365 Monitoring</h3>
+                                    <p class="text-gray-400">Our systems never sleep, constantly watching over your critical infrastructure for any signs of trouble.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center"><svg class="w-5 h-5 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.375 1.518L7.498 21l-1.992-2.235A3 3 0 015.25 16.5v-1.007a3 3 0 01.375-1.518L7.498 12l1.992-2.235A3 3 0 019.75 8.25v-1.007a3 3 0 01.375-1.518L12.002 3l1.992 2.235A3 3 0 0114.25 6.75v1.007a3 3 0 01-.375 1.518L12.002 12l-1.992 2.235A3 3 0 019.75 15.75v1.518z" /></svg></div>
+                                <div>
+                                    <h3 class="font-semibold text-white">Automated Patching & Maintenance</h3>
+                                    <p class="text-gray-400">We ensure all your systems are up-to-date with the latest security patches and performance updates, deployed safely after hours.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative h-96">
+                         <canvas id="proactiveTasksChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Journey to Stability Section -->
+                <div class="fade-in-section">
+                    <div class="text-center">
+                        <h2 class="text-3xl font-bold tracking-tight text-white">Your Journey to IT Stability</h2>
+                        <p class="mt-4 text-lg text-gray-400 mx-auto max-w-3xl">New clients typically see a dramatic improvement in ticket volume and system stability within the first 90 days. Our structured onboarding process is designed to quickly identify root problems, implement solutions, and transition your environment to a stable, optimized state.</p>
+                    </div>
+                    <div class="mt-8">
+                        <canvas id="onboardingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
     </main>
 
-    <footer class="bg-gray-900 py-8 mt-16 border-t border-gray-800">
+    <footer class="bg-gray-900 py-8 mt-12 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center text-gray-500">
             <p>&copy; 2025 Live Networking Solutions. All Rights Reserved.</p>
         </div>
     </footer>
     <script>
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
-        new Chart(document.getElementById('resultsChart').getContext('2d'), {
-            type: 'bar',
-            data: {
-                labels: ['Downtime Reduction', 'Security Incidents', 'Support Tickets', 'IT Cost Savings'],
-                datasets: [{
-                    label: '% Improvement',
-                    data: [50, 95, 45, 30],
-                    backgroundColor: 'rgba(239, 68, 68, 0.6)',
-                    borderColor: 'rgba(239, 68, 68, 1)',
-                    borderWidth: 1,
-                    borderRadius: 4
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                scales: {
-                    x: { beginAtZero: true, max: 100, ticks: { color: '#9CA3AF', font: { family: "'Inter', sans-serif" } }, grid: { color: 'rgba(255,255,255,0.1)' } },
-                    y: { ticks: { color: '#D1D5DB', font: { family: "'Inter', sans-serif" } }, grid: { display: false } }
-                },
-                plugins: { legend: { display: false }, tooltip: {
-                    bodyFont: { family: "'Inter', sans-serif" },
-                    titleFont: { family: "'Inter', sans-serif" },
-                    callbacks: {
-                        label: function(context) { return context.dataset.label + ': ' + context.raw + '%'; }
-                    }
-                }}
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
             }
+
+            // --- ANIMATION FUNCTIONS ---
+            const animateStat = (element, target, suffix = '') => {
+                let start = 0;
+                const duration = 1500;
+                const increment = target / (duration / 16);
+                const update = () => {
+                    start += increment;
+                    if (start >= target) {
+                        element.textContent = target.toLocaleString() + suffix;
+                    } else {
+                        element.textContent = Math.ceil(start).toLocaleString() + suffix;
+                        requestAnimationFrame(update);
+                    }
+                };
+                requestAnimationFrame(update);
+            };
+
+            const animateDecimalStat = (element, target, suffix = '') => {
+                let start = 0;
+                const duration = 1500;
+                const increment = target / (duration / 16);
+                const update = () => {
+                    start += increment;
+                    if (start >= target) {
+                        element.textContent = target.toFixed(1) + suffix;
+                    } else {
+                        element.textContent = start.toFixed(1) + suffix;
+                        requestAnimationFrame(update);
+                    }
+                };
+                requestAnimationFrame(update);
+            };
+
+            // --- CHART RENDERING FUNCTIONS ---
+            function renderProactiveTasksChart() {
+                const ctx = document.getElementById('proactiveTasksChart');
+                if (!ctx) return;
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Security Scans', 'Patches Deployed', 'Backups Verified', 'User Tickets'],
+                        datasets: [{
+                            label: 'Monthly Tasks Completed',
+                            data: [1200, 850, 600, 85],
+                            backgroundColor: ['rgba(239, 68, 68, 0.6)', 'rgba(239, 68, 68, 0.6)', 'rgba(239, 68, 68, 0.6)', 'rgba(75, 85, 99, 0.6)'],
+                            borderColor: ['#EF4444', '#EF4444', '#EF4444', '#4B5563'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: { 
+                        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                        animation: { duration: 1200, easing: 'easeInOutQuart' },
+                        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ` ${c.raw.toLocaleString()} tasks` } } },
+                        scales: {
+                            x: { ticks: { color: '#9CA3AF' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                            y: { ticks: { color: '#D1D5DB' }, grid: { display: false } }
+                        }
+                    }
+                });
+            }
+
+            function renderOnboardingChart() {
+                const ctx = document.getElementById('onboardingChart');
+                if (!ctx) return;
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Day 1', 'Day 30', 'Day 60', 'Day 90'],
+                        datasets: [
+                            { label: 'Reactive Tickets', data: [25, 12, 5, 2], borderColor: '#F87171', backgroundColor: 'rgba(248, 113, 113, 0.2)', fill: true, tension: 0.4 },
+                            { label: 'System Stability Score (%)', data: [65, 88, 95, 99], borderColor: '#34D399', backgroundColor: 'rgba(52, 211, 153, 0.2)', fill: true, tension: 0.4 }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        animation: { duration: 1200, easing: 'easeInOutQuart' },
+                        plugins: { legend: { labels: { color: '#D1D5DB' } } },
+                        scales: {
+                            y: { min: 0, max: 100, ticks: { color: '#9CA3AF' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                            x: { ticks: { color: '#9CA3AF' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                        }
+                    }
+                });
+            }
+
+            // --- RELIABLE ANIMATION TRIGGER ---
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+
+            // Run animations for elements that should start when they are visible
+            const statObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        if (el.id === 'stat-1') animateStat(el, 28);
+                        if (el.id === 'stat-2') animateStat(el, 98, '%');
+                        if (el.id === 'stat-3') animateDecimalStat(el, 96.0, '%');
+                        if (el.id === 'stat-4') animateStat(el, 4350, '+');
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.8 });
+
+            document.querySelectorAll('.stat-card p[id^="stat-"]').forEach(el => statObserver.observe(el));
+            
+            const chartObserver = new IntersectionObserver((entries, observer) => {
+                 entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                         if (entry.target.id === 'proactiveTasksChart') renderProactiveTasksChart();
+                         if (entry.target.id === 'onboardingChart') renderOnboardingChart();
+                         observer.unobserve(entry.target);
+                    }
+                 });
+            }, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('#proactiveTasksChart, #onboardingChart').forEach(chart => chartObserver.observe(chart));
+
         });
     </script>
 </body>
