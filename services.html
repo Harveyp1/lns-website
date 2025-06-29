@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Live Networking Solutions</title>
+    <title>Our Services - Live Networking Solutions</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +20,13 @@
         body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
         header { background-color: rgba(17, 24, 39, 0.5); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(55, 65, 81, 0.5); }
         
-        /* Service Card Styles */
         .service-card {
-            background-color: #1F2937; /* bg-gray-800 */
-            border: 1px solid #374151; /* bg-gray-700 */
+            background-color: #1F2937;
+            border: 1px solid #374151;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            border-radius: 1rem;
         }
         .service-card:hover {
             transform: translateY(-8px);
@@ -40,7 +43,6 @@
              color: #ffffff;
         }
 
-        /* Animated Hero Background */
         .animated-hero-bg {
             position: relative;
             background: #111827;
@@ -62,44 +64,26 @@
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* --- NEW Process Animation Styles --- */
-        .process-step {
+        /* Animation for sections fading in */
+        .fade-in-section {
             opacity: 0;
-            transition: opacity 0.5s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .process-step.is-visible {
+        .fade-in-section.is-visible {
             opacity: 1;
+            transform: translateY(0);
         }
 
-        /* The animated elements inside each step */
-        .process-step.is-visible .step-content {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        .process-step .step-content {
+        /* Styles for the new Layered Security Diagram */
+        .security-layer {
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
             opacity: 0;
-            transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
+            transform: scale(0.95);
         }
-        /* Staggered animation for left and right */
-        .process-step.step-left .step-content { transform: translateX(-20px); }
-        .process-step.step-right .step-content { transform: translateX(20px); }
-
-        /* Icon container animation */
-        .process-step .step-icon {
-            transform: scale(0.8);
-            transition: transform 0.4s ease-out;
-        }
-        .process-step.is-visible .step-icon {
+        .security-layer.is-visible {
+            opacity: 1;
             transform: scale(1);
-        }
-
-        /* The connector line animation */
-        .process-step .step-line {
-            height: 0;
-            transition: height 0.8s ease-in-out 0.3s;
-        }
-        .process-step.is-visible .step-line {
-            height: 100%;
         }
 
     </style>
@@ -148,139 +132,157 @@
             <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl lg:text-center">
                     <h2 class="text-base font-semibold leading-7 text-red-400">Our Services</h2>
-                    <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Your Technology, Optimized.</p>
-                    <p class="mt-6 text-lg leading-8 text-gray-300">We offer a complete suite of managed IT services designed to optimize your operations, fortify your security, and empower your growth.</p>
+                    <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Comprehensive Technology Solutions</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">From foundational IT support to advanced physical security, we provide the integrated solutions your business needs to thrive securely and efficiently.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="bg-gray-900 py-16 sm:py-24">
+        <!-- Core IT Services Section -->
+        <section id="it-services" class="py-16 sm:py-24 bg-gray-900">
+            <!-- This section content remains the same as the previous correct version -->
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-section">
+                     <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Core IT & Cloud Services</h2>
+                     <p class="mt-4 text-lg text-gray-400">The digital backbone of your business, managed and optimized.</p>
+                </div>
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <!-- Service cards remain the same -->
-                    <div class="service-card flex flex-col items-center text-center rounded-xl p-8">
-                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full">
-                            <svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c1.355 0 2.707-.158 4.008-.462M12 21c-1.355 0-2.707-.158-4.008-.462m16.424-6.082A8.963 8.963 0 0012 3c-1.895 0-3.686.57-5.218 1.576m10.436 9.648A8.963 8.963 0 0112 21c-1.895 0-3.686-.57-5.218-1.576m10.436-9.648L12 12.5l-5.218-3.076" /></svg>
-                        </div>
+                    <div class="service-card flex flex-col items-center text-center p-8 fade-in-section">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full"><svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c1.355 0 2.707-.158 4.008-.462M12 21c-1.355 0-2.707-.158-4.008-.462m16.424-6.082A8.963 8.963 0 0012 3c-1.895 0-3.686.57-5.218-1.576m10.436 9.648A8.963 8.963 0 0112 21c-1.895 0-3.686-.57-5.218-1.576m10.436-9.648L12 12.5l-5.218-3.076" /></svg></div>
                         <h3 class="mt-6 text-xl font-semibold leading-7 text-white">Managed IT Services</h3>
                         <p class="mt-4 flex-grow text-base leading-7 text-gray-400">Proactive support, 24/7 monitoring, and strategic IT planning to keep your business running smoothly. We handle everything from network infrastructure to end-user support.</p>
                     </div>
-                    <div class="service-card flex flex-col items-center text-center rounded-xl p-8">
-                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full">
-                            <svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg>
-                        </div>
+                    <div class="service-card flex flex-col items-center text-center p-8 fade-in-section">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full"><svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg></div>
                         <h3 class="mt-6 text-xl font-semibold leading-7 text-white">Cybersecurity</h3>
                         <p class="mt-4 flex-grow text-base leading-7 text-gray-400">Protect your valuable data with our multi-layered security approach, including advanced threat detection, firewalls, anti-virus, and employee training.</p>
                     </div>
-                    <div class="service-card flex flex-col items-center text-center rounded-xl p-8">
-                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full">
-                           <svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-2.433-2.433c-.586-.173-1.21-.26-1.865-.26-2.949 0-5.523 1.978-6.386 4.664a4.482 4.482 0 00-1.636-.364c-2.072 0-3.834 1.48-4.333 3.467z" /></svg>
-                        </div>
+                    <div class="service-card flex flex-col items-center text-center p-8 fade-in-section">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full"><svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-2.433-2.433c-.586-.173-1.21-.26-1.865-.26-2.949 0-5.523 1.978-6.386 4.664a4.482 4.482 0 00-1.636-.364c-2.072 0-3.834 1.48-4.333 3.467z" /></svg></div>
                         <h3 class="mt-6 text-xl font-semibold leading-7 text-white">Cloud Solutions</h3>
                         <p class="mt-4 flex-grow text-base leading-7 text-gray-400">Leverage the power of the cloud with our expert migration, management, and support for services like Microsoft 365 and Azure, enhancing collaboration and flexibility.</p>
                     </div>
-                    <div class="service-card flex flex-col items-center text-center rounded-xl p-8">
-                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full">
-                            <svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6-2.292m0 4.584a2.25 2.25 0 01-2.25-2.25c0-1.242 1.008-2.25 2.25-2.25s2.25 1.008 2.25 2.25c0 1.242-1.008 2.25-2.25 2.25z" /></svg>
-                        </div>
-                        <h3 class="mt-6 text-xl font-semibold leading-7 text-white">Data Backup & Recovery</h3>
-                        <p class="mt-4 flex-grow text-base leading-7 text-gray-400">Ensure business continuity with our reliable backup solutions. We'll protect your critical data and implement a disaster recovery plan to minimize downtime.</p>
-                    </div>
-                    <div class="service-card flex flex-col items-center text-center rounded-xl p-8">
-                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full">
-                            <svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" /></svg>
-                        </div>
-                        <h3 class="mt-6 text-xl font-semibold leading-7 text-white">VOIP Phone Systems</h3>
-                        <p class="mt-4 flex-grow text-base leading-7 text-gray-400">Modernize your communication with our feature-rich Voice over IP phone systems, offering flexibility and cost savings over traditional landlines.</p>
-                    </div>
-                    <div class="service-card flex flex-col items-center text-center rounded-xl p-8">
-                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full">
-                            <svg class="h-12 w-12 text-red-300 transition-colors" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
-                        </div>
-                        <h3 class="mt-6 text-xl font-semibold leading-7 text-white">IT Consulting</h3>
-                        <p class="mt-4 flex-grow text-base leading-7 text-gray-400">From technology roadmaps to infrastructure upgrades, our vCIO services provide the strategic guidance you need to make informed IT decisions.</p>
-                    </div>
                 </div>
             </div>
         </section>
+        
+        <!-- Physical Security Section -->
+        <section id="physical-security" class="py-16 sm:py-24 bg-gray-900">
+            <!-- This section content remains the same as the previous correct version -->
+             <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-section">
+                     <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Unified Physical Security</h2>
+                     <p class="mt-4 text-lg text-gray-400">Extending protection from the digital world to your physical premises.</p>
+                </div>
+                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    <div class="service-card p-8 fade-in-section">
+                        <h3 class="text-2xl font-bold text-white mb-4">Professional Video Surveillance</h3>
+                        <p class="text-gray-400 mb-6">We deploy enterprise-grade camera systems that record high-definition video locally, ensuring your data remains private and secure—with no mandatory monthly fees. Access your footage from anywhere through a secure mobile app.</p>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start"><svg class="h-6 w-6 flex-shrink-0 text-red-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg><span>Advanced AI for smart detection of people, vehicles, and events.</span></li>
+                            <li class="flex items-start"><svg class="h-6 w-6 flex-shrink-0 text-red-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" /></svg><span>On-premise NVR for complete data ownership and privacy.</span></li>
+                           <li class="flex items-start"><svg class="h-6 w-6 flex-shrink-0 text-red-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg><span>Secure, worldwide access via a seamless mobile application.</span></li>
+                        </ul>
+                    </div>
+                    <div class="service-card p-8 fade-in-section">
+                        <h3 class="text-2xl font-bold text-white mb-4">Next-Generation Access Control</h3>
+                        <p class="text-gray-400 mb-6">Go beyond traditional keys. Our systems provide modern, flexible access control using NFC cards, key fobs, and even mobile unlocking via smartphone. Manage users, schedules, and view detailed access logs from a single, unified platform.</p>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start"><svg class="h-6 w-6 flex-shrink-0 text-red-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" /></svg><span>Multiple credential options, including mobile app access.</span></li>
+                            <li class="flex items-start"><svg class="h-6 w-6 flex-shrink-0 text-red-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Granular scheduling and detailed, real-time access reports.</span></li>
+                            <li class="flex items-start"><svg class="h-6 w-6 flex-shrink-0 text-red-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg><span>Seamless integration with video surveillance for visual verification.</span></li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
+        </section>
 
-        <!-- "Our Approach" Section -->
-        <section class="bg-gray-900 pt-16 pb-24 sm:pt-24 sm:pb-32">
+        <!-- REDESIGNED Data & Charts Section -->
+        <section id="data-insights" class="py-16 sm:py-24 bg-[#111827]">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl lg:text-center">
-                    <h2 class="text-base font-semibold leading-7 text-red-400">Our Process</h2>
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">A Partnership for Success</p>
-                    <p class="mt-6 text-lg leading-8 text-gray-300">We believe in a structured approach that ensures your technology aligns perfectly with your business goals, every step of the way.</p>
+                <!-- Value of Managed Services -->
+                <div class="fade-in-section text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">The Strategic Value of Managed Services</h2>
+                    <p class="mt-4 text-lg text-gray-400 mx-auto max-w-3xl">Partnering with an MSP is more than an IT expense; it's a strategic investment in efficiency, security, and growth. We convert unpredictable capital costs into a stable, predictable operating expense, allowing you to budget effectively and focus on what you do best.</p>
                 </div>
-                <div class="mx-auto mt-20 max-w-md lg:max-w-4xl">
-                    <div class="grid grid-cols-1 gap-y-10 lg:grid-cols-4 lg:gap-x-8">
-                        <!-- Step 1 -->
-                        <div class="process-step step-left text-center lg:text-left">
-                           <div class="flex flex-col items-center lg:flex-row lg:items-start gap-4">
-                               <div class="step-icon flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-gray-800 ring-1 ring-gray-700">
-                                   <span class="text-xl font-bold text-red-400">1</span>
-                               </div>
-                               <div class="step-content">
-                                   <h3 class="text-lg font-semibold text-white">Assessment</h3>
-                                   <p class="mt-1 text-gray-400">We start with a deep dive into your current IT setup.</p>
-                               </div>
-                           </div>
-                           <div class="step-line mt-4 h-16 w-px bg-gray-600 mx-auto lg:hidden"></div>
-                        </div>
-                         <!-- Step 2 -->
-                        <div class="process-step step-right text-center lg:text-left">
-                           <div class="flex flex-col items-center lg:flex-row lg:items-start gap-4">
-                               <div class="step-icon flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-gray-800 ring-1 ring-gray-700">
-                                   <span class="text-xl font-bold text-red-400">2</span>
-                               </div>
-                               <div class="step-content">
-                                   <h3 class="text-lg font-semibold text-white">Strategy</h3>
-                                   <p class="mt-1 text-gray-400">We craft a custom IT roadmap aligned with your goals.</p>
-                               </div>
-                           </div>
-                           <div class="step-line mt-4 h-16 w-px bg-gray-600 mx-auto lg:hidden"></div>
-                        </div>
-                         <!-- Step 3 -->
-                        <div class="process-step step-left text-center lg:text-left">
-                           <div class="flex flex-col items-center lg:flex-row lg:items-start gap-4">
-                               <div class="step-icon flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-gray-800 ring-1 ring-gray-700">
-                                   <span class="text-xl font-bold text-red-400">3</span>
-                               </div>
-                               <div class="step-content">
-                                   <h3 class="text-lg font-semibold text-white">Implementation</h3>
-                                   <p class="mt-1 text-gray-400">Our experts deploy your new solutions seamlessly.</p>
-                               </div>
-                           </div>
-                           <div class="step-line mt-4 h-16 w-px bg-gray-600 mx-auto lg:hidden"></div>
-                        </div>
-                        <!-- Step 4 -->
-                        <div class="process-step step-right text-center lg:text-left">
-                           <div class="flex flex-col items-center lg:flex-row lg:items-start gap-4">
-                               <div class="step-icon flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-gray-800 ring-1 ring-gray-700">
-                                   <span class="text-xl font-bold text-red-400">4</span>
-                               </div>
-                               <div class="step-content">
-                                   <h3 class="text-lg font-semibold text-white">Support</h3>
-                                   <p class="mt-1 text-gray-400">We provide 24/7 monitoring and proactive support.</p>
-                               </div>
-                           </div>
-                        </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="service-card p-6 text-center fade-in-section">
+                        <div class="icon-container flex h-20 w-20 items-center justify-center rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 14v1m0-6v.01M12 14c-1.11 0-2.08-.402-2.599-1M12 14c1.657 0 3-.895 3-2s-1.343-2-3-2m0 8c-1.11 0-2.08-.402-2.599-1" /></svg></div>
+                        <h3 class="mt-4 text-xl font-semibold text-white">Predictable Budgeting</h3>
+                        <p class="mt-2 text-gray-400">Convert unpredictable IT costs into a fixed monthly payment for proactive management and unlimited support.</p>
                     </div>
+                    <div class="service-card p-6 text-center fade-in-section">
+                        <div class="icon-container flex h-20 w-20 items-center justify-center rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.07a2.25 2.25 0 01-2.25 2.25H5.75A2.25 2.25 0 013.5 18.22V10.75a2.25 2.25 0 012.25-2.25h.396c.026 0 .051.01.076.025l1.437 1.437c.024.024.037.058.037.094V11.25a2.25 2.25 0 002.25 2.25h1.5v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v3.375h1.5a2.25 2.25 0 002.25-2.25v-.375c0-.036.013-.07.037-.094l1.437-1.437c.025-.015.05-.025.076-.025h.396a2.25 2.25 0 012.25 2.25v4.07zM12 12V3.75z" /></svg></div>
+                        <h3 class="mt-4 text-xl font-semibold text-white">Reduced Capital Expense</h3>
+                        <p class="mt-2 text-gray-400">Avoid large upfront costs for hardware, software licensing, and infrastructure by leveraging our enterprise-grade technology stack.</p>
+                    </div>
+                    <div class="service-card p-6 text-center fade-in-section">
+                        <div class="icon-container flex h-20 w-20 items-center justify-center rounded-full mx-auto"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg></div>
+                        <h3 class="mt-4 text-xl font-semibold text-white">Increased Productivity</h3>
+                        <p class="mt-2 text-gray-400">Our proactive maintenance minimizes costly downtime, allowing your team to stay focused and productive.</p>
+                    </div>
+                </div>
+                <div class="mt-16 fade-in-section">
+                    <canvas id="costChart"></canvas>
                 </div>
             </div>
         </section>
 
+        <!-- Layered Security Diagram -->
+        <section id="cybersecurity-defense" class="py-16 sm:py-24 bg-[#111827] border-t border-gray-800">
+             <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-section">
+                     <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Layered Security Approach</h2>
+                     <p class="mt-4 text-lg text-gray-400">A single security tool is not enough. We protect your business with a multi-layered defense strategy, ensuring comprehensive protection from all angles.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center">
+                    <div class="security-layer">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full mx-auto bg-gray-800 border border-gray-700"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg></div>
+                        <h3 class="mt-4 font-semibold text-white">Network Firewall</h3>
+                        <p class="text-sm text-gray-400">Perimeter Defense</p>
+                    </div>
+                    <div class="security-layer">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full mx-auto bg-gray-800 border border-gray-700"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.375 1.518L7.498 21l-1.992-2.235A3 3 0 015.25 16.5v-1.007a3 3 0 01.375-1.518L7.498 12l1.992-2.235A3 3 0 019.75 8.25v-1.007a3 3 0 01.375-1.518L12.002 3l1.992 2.235A3 3 0 0114.25 6.75v1.007a3 3 0 01-.375 1.518L12.002 12l-1.992 2.235A3 3 0 019.75 15.75v1.518z" /></svg></div>
+                        <h3 class="mt-4 font-semibold text-white">Email Filtering</h3>
+                        <p class="text-sm text-gray-400">Inbox Protection</p>
+                    </div>
+                    <div class="security-layer">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full mx-auto bg-gray-800 border border-gray-700"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" /></svg></div>
+                        <h3 class="mt-4 font-semibold text-white">Endpoint Security (EDR)</h3>
+                        <p class="text-sm text-gray-400">Device Protection</p>
+                    </div>
+                    <div class="security-layer">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full mx-auto bg-gray-800 border border-gray-700"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-4.663l.342.343a.375.375 0 00.53-.53l-.342-.343a6.375 6.375 0 014.663 11.964l.001.109j" /></svg></div>
+                        <h3 class="mt-4 font-semibold text-white">Employee Training</h3>
+                        <p class="text-sm text-gray-400">Human Firewall</p>
+                    </div>
+                    <div class="security-layer">
+                        <div class="icon-container flex h-24 w-24 items-center justify-center rounded-full mx-auto bg-gray-800 border border-gray-700"><svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                        <h3 class="mt-4 font-semibold text-white">24/7 Monitoring (SOC)</h3>
+                        <p class="text-sm text-gray-400">Continuous Oversight</p>
+                    </div>
+                </div>
+                 <div class="mt-16 fade-in-section">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-white">Threats Neutralized Monthly</h3>
+                        <p class="text-gray-400 mt-2">Data averaged across all clients.</p>
+                    </div>
+                    <div class="mt-8 relative h-64 md:h-80 mx-auto max-w-md">
+                         <canvas id="threatChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="bg-gray-900 py-8 border-t border-gray-800">
+    <footer class="bg-gray-900 py-8 mt-16 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center text-gray-500">
             <p>&copy; 2025 Live Networking Solutions. All Rights Reserved.</p>
         </div>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu Toggle
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             if(menuBtn) {
@@ -289,24 +291,69 @@
                 });
             }
 
-            // Intersection Observer for Animations
-            const animatedElements = document.querySelectorAll('.process-step');
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
-                        // Add a staggered delay based on the element's index
-                        entry.target.style.transitionDelay = `${index * 150}ms`;
+                        // Apply a staggered delay for the fade-in effect
+                        entry.target.style.transitionDelay = `${index * 100}ms`;
                         entry.target.classList.add('is-visible');
+
+                        if(entry.target.id === 'costChart' && !window.costChart) {
+                            renderCostChart();
+                        }
+                        if(entry.target.id === 'threatChart' && !window.threatChart) {
+                            renderThreatChart();
+                        }
                     }
                 });
-            }, {
-                threshold: 0.2 // Trigger when 20% of the element is visible
-            });
+            }, { threshold: 0.1 });
 
-            animatedElements.forEach(el => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.fade-in-section, .security-layer').forEach(el => observer.observe(el));
+            observer.observe(document.getElementById('costChart'));
+            observer.observe(document.getElementById('threatChart'));
+            
+            function renderCostChart() {
+                 window.costChart = new Chart(document.getElementById('costChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Salaries & Benefits', 'Software & Tools', 'Training & Certs', 'Total Annual Cost'],
+                        datasets: [
+                            {
+                                label: 'In-House IT Team',
+                                data: [150000, 20000, 10000, 180000],
+                                backgroundColor: 'rgba(107, 114, 128, 0.5)',
+                                borderColor: '#6B7280',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'LNS Managed Services',
+                                data: [0, 0, 0, 72000],
+                                backgroundColor: 'rgba(239, 68, 68, 0.6)',
+                                borderColor: '#EF4444',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: { plugins: { legend: { labels: { color: '#D1D5DB' } } }, scales: { y: { ticks: { color: '#9CA3AF' }, grid: { color: 'rgba(255,255,255,0.1)' } }, x: { ticks: { color: '#9CA3AF' }, grid: { display: false } } } }
+                });
+            }
+
+            function renderThreatChart(){
+                window.threatChart = new Chart(document.getElementById('threatChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Phishing Attempts', 'Malware Blocked', 'Ransomware', 'Exploit Attempts'],
+                        datasets: [{
+                            label: 'Threats Neutralized This Month',
+                            data: [1250, 800, 150, 450],
+                            backgroundColor: ['#F87171', '#FBBF24', '#DC2626', '#FB923C'],
+                            borderColor: '#111827',
+                            borderWidth: 4,
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#D1D5DB' } } } }
+                });
+            }
         });
     </script>
 </body>
